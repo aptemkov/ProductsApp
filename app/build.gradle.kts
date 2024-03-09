@@ -43,6 +43,7 @@ android {
 
 dependencies {
 
+    implementation(libs.gson)
     implementation(libs.glide)
     implementation(libs.viewmodel)
     implementation(libs.livedata)

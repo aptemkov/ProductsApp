@@ -17,7 +17,7 @@ rxjava-adapter = "2.9.0"
 rxjava = "3.1.8"
 rxjava-android = "3.0.2"
 lifecycle_version = "2.7.0"
-hilt = "2.44"
+hilt = "2.51"
 ksp = "1.9.22-1.0.17"
 
 [libraries]
@@ -30,7 +30,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
+
 glide = { module = "com.github.bumptech.glide:glide", name = "glide", version.ref = "glide" }
+gson = { module = "com.squareup.retrofit2:converter-gson", name = "gson", version.ref = "gson" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", name = "retrofit", version.ref = "retrofit" }
 retrofit-adapter = { module = "com.squareup.retrofit2:adapter-rxjava3", name = "rxjava", version.ref = "rxjava-adapter" }
 rx-java = { module = "io.reactivex.rxjava3:rxjava", name = "rx-java", version.ref = "rxjava" }
