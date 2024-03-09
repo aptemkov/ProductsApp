@@ -1,6 +1,6 @@
 [versions]
 agp = "8.3.0"
-kotlin = "1.9.0"
+kotlin = "1.9.22"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -9,6 +9,16 @@ appcompat = "1.6.1"
 material = "1.11.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
+
+glide = "4.16.0"
+gson = "2.9.0"
+retrofit = "2.9.0"
+rxjava-adapter = "2.9.0"
+rxjava = "3.1.8"
+rxjava-android = "3.0.2"
+lifecycle_version = "2.7.0"
+hilt = "2.44"
+ksp = "1.9.22-1.0.17"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -20,7 +30,21 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
+glide = { module = "com.github.bumptech.glide:glide", name = "glide", version.ref = "glide" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", name = "retrofit", version.ref = "retrofit" }
+retrofit-adapter = { module = "com.squareup.retrofit2:adapter-rxjava3", name = "rxjava", version.ref = "rxjava-adapter" }
+rx-java = { module = "io.reactivex.rxjava3:rxjava", name = "rx-java", version.ref = "rxjava" }
+rx-android = { module = "io.reactivex.rxjava3:rxandroid", name = "rx-android", version.ref = "rxjava-android" }
+viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", name = "viewmodel", version.ref = "lifecycle_version" }
+livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", name = "livedata", version.ref = "lifecycle_version" }
+hilt-android = { module = "com.google.dagger:hilt-android", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", name = "hilt-compiler", version.ref = "hilt" }
+
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 
