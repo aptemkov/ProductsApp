@@ -5,6 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.aptemkov.productsapp.data.api.ProductApi
+import io.github.aptemkov.productsapp.data.repository.ProductsRepositoryImpl
+import io.github.aptemkov.productsapp.domain.repository.ProductsRepository
 import io.github.aptemkov.productsapp.utils.PRODUCTS_BASE_URL
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -23,6 +25,13 @@ object AppModule {
             .build()
 
         return retrofit.create(ProductApi::class.java)
+    }
+
+    @Provides
+    fun provideProductsRepository(
+        productApi: ProductApi,
+    ): ProductsRepository {
+        return ProductsRepositoryImpl(productApi)
     }
 
 }
