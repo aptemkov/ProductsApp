@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="retry">Заново</string>
+    <string name="exception">Ошибка</string>
+    <string name="you_have_no_internet_connection">У вас отсутствует подключение к интернету</string>
+    <string name="load_more">Ещё</string>
+    <string name="product_image_description">Изображение продукта</string>
+</resources>

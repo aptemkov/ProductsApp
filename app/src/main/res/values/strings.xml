@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProductsApp</string>
+    <string name="app_name" translatable="false">ProductsApp</string>
     <string name="retry">Retry</string>
     <string name="exception">Exception</string>
     <string name="you_have_no_internet_connection">Oops. You have no Internet connection</string>
