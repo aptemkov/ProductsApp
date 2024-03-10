@@ -4,6 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray50">#80000000</color>
 
-    <color name="primaryText">#FF000000</color>
-    <color name="secondaryText">#80000000</color>
+    <color name="primaryText">#FFFFFF</color>
+    <color name="secondaryText">#80FFFFFF</color>
 </resources>

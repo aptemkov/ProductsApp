@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ProductsApp</string>
+    <string name="retry">Retry</string>
+    <string name="exception">Exception</string>
+    <string name="you_have_no_internet_connection">Oops. You have no Internet connection</string>
+    <string name="load_more">Load more</string>
+    <string name="product_image_description">Product image</string>
 </resources>
