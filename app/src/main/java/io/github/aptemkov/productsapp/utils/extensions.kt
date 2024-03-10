@@ -1,9 +1,12 @@
 package io.github.aptemkov.productsapp.utils
 
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 
 fun Context.hasInternetConnection(): Boolean {
     val connectivityManager =
@@ -26,4 +29,13 @@ fun Context.hasInternetConnection(): Boolean {
 
 fun Context.log(tag: String, message: String) {
     Log.i(tag, message)
+}
+
+fun Context.hideKeyboard(view: View) {
+    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
+fun Activity.hideKeyboard() {
+    hideKeyboard(currentFocus ?: View(this))
 }

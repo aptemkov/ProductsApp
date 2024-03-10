@@ -2,6 +2,7 @@ package io.github.aptemkov.productsapp.app.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +14,12 @@ import io.github.aptemkov.productsapp.databinding.ActivityMainBinding
 import io.github.aptemkov.productsapp.domain.models.ProductDomain
 import io.github.aptemkov.productsapp.utils.MAIN_ACTIVITY_TAG
 import io.github.aptemkov.productsapp.utils.hasInternetConnection
+import io.github.aptemkov.productsapp.utils.hideKeyboard
 import io.github.aptemkov.productsapp.utils.log
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -29,6 +35,36 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
         setupDataSource()
+        setupSearchView()
+    }
+
+    /**
+     * Вероятно, не самая лучшая реализация поиска, но я постарался сделать его удобным для пользователя
+     */
+    private fun setupSearchView() {
+        val disposable = Observable.create<String> { emitter ->
+            binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    hideKeyboard()
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (!emitter.isDisposed) {
+                        emitter.onNext(newText ?: " ")
+                    }
+                    return false
+                }
+
+            })
+        }
+            .debounce(700, TimeUnit.MILLISECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { query ->
+                viewModel.searchByQuery(query)
+            }
     }
 
     private fun setupDataSource() {
@@ -38,9 +74,7 @@ class MainActivity : AppCompatActivity() {
 
                 is Response.Error -> onError(it.message)
 
-                is Response.Loading -> {
-                    onLoading()
-                }
+                is Response.Loading -> onLoading()
             }
         }
     }
@@ -84,7 +118,7 @@ class MainActivity : AppCompatActivity() {
     private fun showException(message: String) {
 
         binding.exceptionText.text =
-            if(hasInternetConnection()) message
+            if (hasInternetConnection()) message
             else getString(R.string.you_have_no_internet_connection)
         binding.exceptionText.visibility = View.VISIBLE
         binding.exceptionRetryButton.visibility = View.VISIBLE

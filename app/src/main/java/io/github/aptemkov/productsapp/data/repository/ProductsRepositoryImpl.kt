@@ -13,4 +13,8 @@ class ProductsRepositoryImpl @Inject constructor(
         return productApi.getProductsList()
     }
 
+    override fun searchProductsByQuery(query: String): Single<ProductResponseDomain> {
+        return productApi.searchProductsByQuery(query)
+    }
+
 }

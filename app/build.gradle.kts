@@ -53,7 +53,6 @@ dependencies {
     implementation(libs.rx.android)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-//    implementation(libs.androidx.activity.ktx)
     implementation(libs.hilt.viewmodel)
     implementation(libs.fragment.viewmodel)
 

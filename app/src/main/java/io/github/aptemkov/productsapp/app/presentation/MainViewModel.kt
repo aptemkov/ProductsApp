@@ -19,7 +19,7 @@ class MainViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
     private val productsMutable = MutableLiveData<Response<List<ProductDomain>>>()
-    val products: LiveData<Response<List<ProductDomain>>>
+    private val products: LiveData<Response<List<ProductDomain>>>
         get() = productsMutable
 
     init {
@@ -48,6 +48,34 @@ class MainViewModel @Inject constructor(
                     }
                 )
         )
+    }
+
+    fun searchByQuery(query: String) {
+        if(query.isEmpty()) {
+            fetchAllProducts()
+        } else {
+            productsMutable.postValue(Response.Loading())
+
+            compositeDisposable.add(
+                repository.searchProductsByQuery(query)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        //onSuccess
+                        { productResponse ->
+                            productsMutable.postValue(
+                                Response.Success(productResponse.products)
+                            )
+                        },
+                        //onError
+                        {
+                            productsMutable.postValue(
+                                Response.Error(it.localizedMessage)
+                            )
+                        }
+                    )
+            )
+        }
     }
 
     fun getProductsList() = products
