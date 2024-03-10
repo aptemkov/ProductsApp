@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.aptemkov.productsapp.R
 import io.github.aptemkov.productsapp.app.presentation.adapter.ProductsAdapter
-import io.github.aptemkov.productsapp.utils.Response
 import io.github.aptemkov.productsapp.databinding.ActivityMainBinding
 import io.github.aptemkov.productsapp.domain.models.ProductDomain
 import io.github.aptemkov.productsapp.utils.MAIN_ACTIVITY_TAG
+import io.github.aptemkov.productsapp.utils.Response
 import io.github.aptemkov.productsapp.utils.hasInternetConnection
 import io.github.aptemkov.productsapp.utils.hideKeyboard
 import io.github.aptemkov.productsapp.utils.log
